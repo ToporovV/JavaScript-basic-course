@@ -55,7 +55,7 @@ const catalog = {
                 <button
                     class="product__add-basket"
                     data-id="${item.id}"
-                >В корзину</button>
+                >Купить</button>
             </div>`;
     },
 
@@ -75,7 +75,7 @@ const catalog = {
 
     renderEmptyCatalog() {
         this.catalogBlock.innerHTML = '';
-        this.catalogBlock.textContent = 'Каталог товаров пуст';
+        this.catalogBlock.textContent = 'Каталог пуст';
     },
 };
 
@@ -143,17 +143,13 @@ const basket = {
 
 
     addBasket(product) {
-        if (product) {
-            const findInBasket = this.products.find(({ id }) => product.id === id);
-            if (findInBasket) {
-                findInBasket.count++;
-            } else {
-                this.products.push(Object.assign({ count: 1 }, product));
-            }
-            this.render();
+        const findInBasket = this.products.find(({ id }) => product.id === id);
+        if (findInBasket) {
+            findInBasket.count++;
         } else {
-            alert('Ошибка!');
+            this.products.push(Object.assign({ count: 1 }, product));
         }
+        this.render();
     },
 
 
